@@ -27,6 +27,11 @@ input {
     padding: 20px;
 }
 
+.gif-block {
+	display: inline-block;
+}
+
 .debug {
     /*  border: 1px solid; */
 }
+

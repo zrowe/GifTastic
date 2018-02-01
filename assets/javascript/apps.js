@@ -1,13 +1,13 @@
 var debug = 1 // my handy console debug flag
 
 // Initial array of topics
-var topics = ["airplane movie", "boat", "trains", "cars"];
+var topics = ["aircraft accidents", "house fires", "addams family", "train wrecks"];
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayGifs() {
 
     var topic = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0gpg33lyPji2L7YrGHwBEjwf9muwtglO&q=" + topic + "&limit=10&offset=0&rating=PG&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0gpg33lyPji2L7YrGHwBEjwf9muwtglO&q=" + encodeURIComponent(topic) + "&limit=10&offset=0&rating=PG&lang=en";
 
     $.ajax({ // launch query for the top 
         url: queryURL,
@@ -22,7 +22,7 @@ function displayGifs() {
             if (debug) { console.log(i) };
 
             // Create a div to hold a gif block
-            var gifDiv = $("<div class='gifBlock'>");
+            var gifDiv = $("<div class='gif-block'>");
 
             // Create and add an element to hold the rating
             var rating = response.data[i].rating;
@@ -80,6 +80,14 @@ $(document).on("click", ".gif", function() {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
     }
+});
+
+
+$("#add-topic").on("click", function(event) {
+    event.preventDefault();
+    var topic = $("#topic-input").val().trim();
+    topics.push(topic);
+    renderButtons();
 });
 
 
