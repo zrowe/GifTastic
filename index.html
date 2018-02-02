@@ -6,23 +6,22 @@
     <title>GifTastic</title>
     <!-- Added link to the jQuery Library -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--    <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="container">
-        <div id="topics-view"></div>
+        <div class="hero">
+            <div id="topics-view"></div>
+            <form id="topic-form">
+                <input type="text" id="topic-input" value="">
+                <input id="add-topic" type="submit" value="Submit Topic">
+            </form>
+        </div>
         <div id="gifs-view"></div>
     </div>
-    <form id="topic-form">
-        <label for="topic-input">Add a Topic</label>
-        <input type="text" id="topic-input">
-        <br>
-        <div id="topic-view"></div>
-        <input id="add-topic" type="submit" value="Add a Topic">
-    </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
     <script type="text/javascript " src="assets/javascript/apps.js "></script>
 </body>

@@ -1,13 +1,14 @@
 var debug = 1 // my handy console debug flag
 
 // Initial array of topics
-var topics = ["aircraft accidents", "house fires", "addams family", "train wrecks"];
+var topics = ["aircraft accidents", "house fires", "addams family", "train wrecks", "dead space", "slender man", "babadook"];
+var prompt = "";
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayGifs() {
 
     var topic = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0gpg33lyPji2L7YrGHwBEjwf9muwtglO&q=" + encodeURIComponent(topic) + "&limit=10&offset=0&rating=PG&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0gpg33lyPji2L7YrGHwBEjwf9muwtglO&q=" + encodeURIComponent(topic) + "&limit=10&offset=0&lang=en";
 
     $.ajax({ // launch query for the top 
         url: queryURL,
@@ -24,24 +25,27 @@ function displayGifs() {
             // Create a div to hold a gif block
             var gifDiv = $("<div class='gif-block'>");
 
-            // Create and add an element to hold the rating
-            var rating = response.data[i].rating;
-            var myRating = $("<p>").text("Rating: " + rating);
-            gifDiv.append(myRating);
 
             // Create and add an element to hold the image
             var imgURL = response.data[i].images.fixed_height_still.url; // the still image
             var animateURL = response.data[i].images.fixed_height.url; // the animated image
-
+            var imgTitle = response.data[i].title;
             var image = $("<img>")
             image.attr({
                 "src": imgURL,
+                "alt": imgTitle,
                 "data-still": imgURL,
                 "data-animate": animateURL,
                 "data-state": "still"
             });
             image.addClass("gif");
             gifDiv.append(image);
+
+            // Create and add an element to hold the rating
+            var rating = response.data[i].rating;
+            var myRating = $("<p>").text("Rating: " + rating);
+            myRating.addClass("rating");
+            gifDiv.append(myRating);
 
             // Display a gif Block
             $("#gifs-view").append(gifDiv);
@@ -86,6 +90,7 @@ $(document).on("click", ".gif", function() {
 $("#add-topic").on("click", function(event) {
     event.preventDefault();
     var topic = $("#topic-input").val().trim();
+    $("#topic-input").val(prompt);
     topics.push(topic);
     renderButtons();
 });
@@ -93,3 +98,4 @@ $("#add-topic").on("click", function(event) {
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
+$("#topic-input").val(prompt);
