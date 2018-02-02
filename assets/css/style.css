@@ -13,7 +13,6 @@ body {
     box-sizing: border-box;
 }
 
-
 button,
 div,
 form,
@@ -38,8 +37,7 @@ form {
 .topic-btn {
     background-color: azure;
     border-radius: 15px;
-        font-family: "Courier New", Courier, monospace;
-
+    font-family: "Courier New", Courier, monospace;
 }
 
 #topics-view {
@@ -52,18 +50,16 @@ form {
     float: right;
 }
 
-
 #topic-input {
     margin-right: 0px;
     background-color: bisque;
-           border-radius: 15px;
+    border-radius: 15px;
 }
-
 
 #add-topic {
     margin-left: 0px;
     background-color: bisque;
-           border-radius: 15px;
+    border-radius: 15px;
 }
 
 .gif-block {
@@ -74,6 +70,3 @@ form {
     margin: 0px;
 }
 
-.debug {
-    /*  border: 1px solid; */
-}

@@ -1,7 +1,7 @@
-var debug = 1 // my handy console debug flag
+var debug = 0 // my handy console debug flag
 
 // Initial array of topics
-var topics = ["aircraft accidents", "house fires", "addams family", "train wrecks", "dead space", "slender man", "babadook"];
+var topics = ["aircraft accidents", "house fires", "addams family", "train wrecks", "slender man", "babadook"];
 var prompt = "";
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
@@ -90,9 +90,11 @@ $(document).on("click", ".gif", function() {
 $("#add-topic").on("click", function(event) {
     event.preventDefault();
     var topic = $("#topic-input").val().trim();
+    if (topic !== "" && topics.indexOf(topic) == -1) { // ignore empty input or duplicate
+        topics.push(topic);
+        renderButtons();
+    }
     $("#topic-input").val(prompt);
-    topics.push(topic);
-    renderButtons();
 });
 
 
